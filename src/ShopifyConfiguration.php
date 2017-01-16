@@ -26,6 +26,12 @@ class ShopifyConfiguration
     /**
      * @var string
      */
+    protected $sharedSecret;
+
+
+    /**
+     * @var string
+     */
     protected $url;
 
 
@@ -34,6 +40,7 @@ class ShopifyConfiguration
         $this->apiKey                   = AU::get($data['apiKey']);
         $this->password                 = AU::get($data['password']);
         $this->hostName                 = AU::get($data['hostName']);
+        $this->sharedSecret             = AU::get($data['sharedSecret']);
 
         $this->setUrl();
     }

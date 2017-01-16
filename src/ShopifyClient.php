@@ -58,6 +58,7 @@ class ShopifyClient
                 'apiKey'                => AU::get($config['apiKey']),
                 'password'              => AU::get($config['password']),
                 'hostName'              => AU::get($config['hostName']),
+                'sharedSecret'          => AU::get($config['sharedSecret']),
             ];
             $this->config               = new ShopifyConfiguration($data);
         }
@@ -73,6 +74,7 @@ class ShopifyClient
                 'apiKey'                => getenv('SHOPIFY_API_KEY'),
                 'password'              => getenv('SHOPIFY_PASSWORD'),
                 'hostName'              => getenv('SHOPIFY_HOST_NAME'),
+                'sharedSecret'          => getenv('SHOPIFY_SHARED_SECRET'),
             ];
             $this->config               = new ShopifyConfiguration($data);
         }
