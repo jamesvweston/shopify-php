@@ -1,0 +1,38 @@
+{
+  "name": "jamesvweston/shopify-php",
+  "description": "A simple PHP wrapper for the Shopify.com API",
+  "keywords": [
+    "php",
+    "shopify",
+    "api",
+    "shopify-buy",
+    "shopify-php"
+  ],
+  "license": "MIT",
+  "type": "library",
+  "homepage": "https://github.com/jamesvweston/shopify-php",
+  "authors":[
+    {
+      "name": "James Weston",
+      "email": "jamesvweston@users.noreply.github.com"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^6.2",
+    "jamesvweston/php-utilities": "dev-master",
+    "vlucas/phpdotenv": "^2.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "jamesvweston\\Shopify\\": "src"
+    }
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable" : true
+}
