@@ -17,7 +17,7 @@ class ShopifyClient
     /**
      * @var ShopifyConfiguration
      */
-    protected $shopifyConfiguration;
+    protected $config;
 
     /**
      * @var CarrierServiceApi
@@ -79,11 +79,11 @@ class ShopifyClient
         else
             throw new \InvalidArgumentException('A configuration must be provided');
 
-        $this->carrierServiceApi        = new CarrierServiceApi($this->shopifyConfiguration);
-        $this->collectApi               = new CollectApi($this->shopifyConfiguration);
-        $this->productApi               = new ProductApi($this->shopifyConfiguration);
-        $this->orderApi                 = new OrderApi($this->shopifyConfiguration);
-        $this->webHookApi               = new WebHookApi($this->shopifyConfiguration);
+        $this->carrierServiceApi        = new CarrierServiceApi($this->config);
+        $this->collectApi               = new CollectApi($this->config);
+        $this->productApi               = new ProductApi($this->config);
+        $this->orderApi                 = new OrderApi($this->config);
+        $this->webHookApi               = new WebHookApi($this->config);
     }
 
 
