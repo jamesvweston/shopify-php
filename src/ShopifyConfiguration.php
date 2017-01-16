@@ -45,6 +45,19 @@ class ShopifyConfiguration
         $this->setUrl();
     }
 
+    /**
+     * Validates if Shopify is sending the WebHook
+     * @param   string  $input
+     * @param   string  $hMac
+     * @return  bool
+     */
+    public function authenticateWebHook ($input, $hMac)
+    {
+        $hmac_header                    = $hMac;
+        $calculated_hmac                = base64_encode(hash_hmac('sha256', $input, $this->sharedSecret, true));
+
+        return ($hmac_header == $calculated_hmac);
+    }
 
     private function setUrl ()
     {
