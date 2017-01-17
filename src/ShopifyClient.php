@@ -88,6 +88,20 @@ class ShopifyClient
         $this->webHookApi               = new WebHookApi($this->config);
     }
 
+    /**
+     * @return ShopifyConfiguration
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
 
+    /**
+     * @param ShopifyConfiguration $config
+     */
+    public function setConfig($config)
+    {
+        $this->config = $config;
+    }
 
 }
