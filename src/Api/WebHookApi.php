@@ -25,7 +25,7 @@ class WebHookApi extends BaseApi
         $result                         = [];
         foreach ($items AS $webHook)
         {
-            $result[]                   = new GetShopifyWebHooks($webHook);
+            $result[]                   = new ShopifyWebHook($webHook);
         }
 
         return $result;

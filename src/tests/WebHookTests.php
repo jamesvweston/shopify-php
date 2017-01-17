@@ -5,13 +5,12 @@ namespace jamesvweston\Shopify\tests;
 
 use jamesvweston\Shopify\tests\Factories\InstanceFactory;
 
-class OrderTests extends \PHPUnit_Framework_TestCase
+class WebHookTests extends \PHPUnit_Framework_TestCase
 {
-
 
     public function testGet ()
     {
         $client                     = InstanceFactory::getFromEnv();
-        $results                    = $client->orderApi->get();
+        $result                     = $client->webHookApi->get();
     }
 }
