@@ -6,6 +6,7 @@ namespace jamesvweston\Shopify;
 use Dotenv\Dotenv;
 use jamesvweston\Shopify\Api\CarrierServiceApi;
 use jamesvweston\Shopify\Api\CollectApi;
+use jamesvweston\Shopify\Api\CustomerApi;
 use jamesvweston\Shopify\Api\OrderApi;
 use jamesvweston\Shopify\Api\ProductApi;
 use jamesvweston\Shopify\Api\WebHookApi;
@@ -28,6 +29,11 @@ class ShopifyClient
      * @var CollectApi
      */
     public $collectApi;
+
+    /**
+     * @var CustomerApi
+     */
+    public $customerApi;
 
     /**
      * @var OrderApi
@@ -83,6 +89,7 @@ class ShopifyClient
 
         $this->carrierServiceApi        = new CarrierServiceApi($this->config);
         $this->collectApi               = new CollectApi($this->config);
+        $this->customerApi              = new CustomerApi($this->config);
         $this->productApi               = new ProductApi($this->config);
         $this->orderApi                 = new OrderApi($this->config);
         $this->webHookApi               = new WebHookApi($this->config);
