@@ -32,6 +32,19 @@ class CustomerApi extends BaseApi
     }
 
     /**
+     * @see     https://help.shopify.com/api/reference/customer#show
+     * @param   int         $id
+     * @return  ShopifyCustomer|null
+     */
+    public function show ($id)
+    {
+        $response                       = parent::makeHttpRequest('get', '/customers/' . $id . '.json');
+
+        $items                          = AU::get($response['customer']);
+        return is_null($items) ? null : new ShopifyCustomer($items);
+    }
+
+    /**
      * @see     https://help.shopify.com/api/reference/customer#count
      * @param   GetShopifyCustomersCount|array    $request
      * @return  int
