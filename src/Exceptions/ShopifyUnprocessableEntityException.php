@@ -3,7 +3,7 @@
 namespace jamesvweston\Shopify\Exceptions;
 
 
-class ShopifyUnprocessableEntityException extends \Exception
+class ShopifyUnprocessableEntityException extends ShopifyApiException
 {
 
     public function __construct($message, $code = 422, \Exception $previous = null)

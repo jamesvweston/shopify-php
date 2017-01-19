@@ -3,7 +3,7 @@
 namespace jamesvweston\Shopify\Exceptions;
 
 
-class ShopifyBadRequestException extends \Exception
+class ShopifyBadRequestException extends ShopifyApiException
 {
 
     public function __construct($message = 'Required parameter missing or invalid', $code = 400, \Exception $previous = null)

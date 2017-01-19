@@ -3,7 +3,7 @@
 namespace jamesvweston\Shopify\Exceptions;
 
 
-class ShopifyInvalidCredentialsException extends \Exception
+class ShopifyInvalidCredentialsException extends ShopifyApiException
 {
 
     public function __construct($message = 'Invalid shopify credentials', $code = 403, \Exception $previous = null)
