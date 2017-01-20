@@ -14,13 +14,16 @@ class CollectApi extends BaseApi
     /**
      * @see     https://help.shopify.com/api/reference/collect#index
      * @param   GetShopifyCollects|array        $request
-     * @return  ShopifyCollect[]
+     * @return  ShopifyCollect[]|string
      */
     public function get ($request = [])
     {
         $request                        = $request instanceof GetShopifyCollects ? $request : new GetShopifyCollects($request);
         $response                       = parent::makeHttpRequest('get', '/collects.json', $request);
         $items                          = AU::get($response['collects'], []);
+
+        if ($this->config->isJsonOnly())
+            return $items;
 
         $result                         = [];
         foreach ($items AS $collect)
@@ -34,12 +37,16 @@ class CollectApi extends BaseApi
     /**
      * @see     https://help.shopify.com/api/reference/collect#create
      * @param   CreateShopifyCollect|array       $request
-     * @return  ShopifyCollect
+     * @return  ShopifyCollect|string
      */
     public function create ($request = [])
     {
         $request                        = $request instanceof CreateShopifyCollect ? $request : new CreateShopifyCollect($request);
         $response                       = parent::makeHttpRequest('post', '/collects.json', ['collect' => $request->jsonSerialize()]);
+
+        if ($this->config->isJsonOnly())
+            return $response;
+
         return new ShopifyCollect($response['collect']);
     }
 

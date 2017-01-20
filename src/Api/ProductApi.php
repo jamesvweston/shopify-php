@@ -16,13 +16,16 @@ class ProductApi extends BaseApi
     /**
      * @see     https://help.shopify.com/api/reference/product#index
      * @param   GetShopifyProducts|array        $request
-     * @return  ShopifyProduct[]
+     * @return  ShopifyProduct[]|string
      */
     public function get ($request = [])
     {
         $request                        = $request instanceof GetShopifyProducts ? $request : new GetShopifyProducts($request);
         $response                       = parent::makeHttpRequest('get', '/products.json', $request);
         $items                          = AU::get($response['products'], []);
+
+        if ($this->config->isJsonOnly())
+            return json_encode($items);
 
         $result                         = [];
         foreach ($items AS $product)
@@ -36,13 +39,16 @@ class ProductApi extends BaseApi
     /**
      * @see     https://help.shopify.com/api/reference/product#show
      * @param   int         $id
-     * @return  ShopifyProduct|null
+     * @return  ShopifyProduct|string
      */
     public function show ($id)
     {
         $response                       = parent::makeHttpRequest('get', '/products/' . $id . '.json');
-
         $items                          = AU::get($response['product']);
+
+        if ($this->config->isJsonOnly())
+            return json_encode($items);
+
         return is_null($items) ? null : new ShopifyProduct($items);
     }
 
@@ -61,25 +67,35 @@ class ProductApi extends BaseApi
     /**
      * @see     https://help.shopify.com/api/reference/product#create
      * @param   CreateShopifyProduct|array       $request
-     * @return  ShopifyProduct
+     * @return  ShopifyProduct|string
      */
     public function create ($request = [])
     {
         $request                        = $request instanceof CreateShopifyProduct ? $request : new CreateShopifyProduct($request);
         $response                       = parent::makeHttpRequest('post', '/products.json', ['product' => $request->jsonSerialize()]);
-        return new ShopifyProduct($response['product']);
+        $items                          = AU::get($response['product']);
+
+        if ($this->config->isJsonOnly())
+            return json_encode($items);
+
+        return new ShopifyProduct($items);
     }
 
     /**
      * @see     https://help.shopify.com/api/reference/product#update
      * @param   ShopifyProduct|array       $request
-     * @return  ShopifyProduct
+     * @return  ShopifyProduct|string
      */
     public function update ($request = [])
     {
         $request                        = $request instanceof ShopifyProduct ? $request : new ShopifyProduct($request);
         $response                       = parent::makeHttpRequest('put', '/products/' . $request->getId() . '.json', ['product' => $request->jsonSerialize()]);
-        return new ShopifyProduct($response['product']);
+        $items                          = AU::get($response['product']);
+
+        if ($this->config->isJsonOnly())
+            return json_encode($items);
+
+        return new ShopifyProduct($items);
     }
 
     /**
@@ -96,12 +112,15 @@ class ProductApi extends BaseApi
     /**
      * @see     https://help.shopify.com/api/reference/product_variant#index
      * @param   int         $id
-     * @return  ShopifyVariant[]
+     * @return  ShopifyVariant[]|string
      */
     public function getVariants ($id)
     {
         $response                       = parent::makeHttpRequest('get', '/products/' . $id . '/variants.json');
         $items                          = AU::get($response['variants'], []);
+
+        if ($this->config->isJsonOnly())
+            return json_encode($items);
 
         $result                         = [];
         foreach ($items AS $variant)

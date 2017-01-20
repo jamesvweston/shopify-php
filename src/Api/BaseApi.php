@@ -107,6 +107,7 @@ class BaseApi
                 throw new ShopifyApiException($errorMessage, $ex->getCode());
         }
 
+
         $result                     = json_decode($response->getBody(), true);
 
         return $result;

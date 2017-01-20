@@ -28,6 +28,10 @@ class ShopifyConfiguration
      */
     protected $sharedSecret;
 
+    /**
+     * @var bool
+     */
+    protected $jsonOnly;
 
     /**
      * @var string
@@ -41,6 +45,7 @@ class ShopifyConfiguration
         $this->password                 = AU::get($data['password']);
         $this->hostName                 = AU::get($data['hostName']);
         $this->sharedSecret             = AU::get($data['sharedSecret']);
+        $this->jsonOnly                 = AU::get($data['version'], false);
 
         $this->setUrl();
     }
@@ -107,6 +112,22 @@ class ShopifyConfiguration
     public function getHostName()
     {
         return $this->hostName;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isJsonOnly()
+    {
+        return $this->jsonOnly;
+    }
+
+    /**
+     * @param bool $jsonOnly
+     */
+    public function setJsonOnly($jsonOnly)
+    {
+        $this->jsonOnly = $jsonOnly;
     }
 
     /**
