@@ -115,6 +115,22 @@ class ShopifyConfiguration
     }
 
     /**
+     * @return string
+     */
+    public function getSharedSecret()
+    {
+        return $this->sharedSecret;
+    }
+
+    /**
+     * @param string $sharedSecret
+     */
+    public function setSharedSecret($sharedSecret)
+    {
+        $this->sharedSecret = $sharedSecret;
+    }
+
+    /**
      * @return bool
      */
     public function isJsonOnly()
