@@ -66,6 +66,7 @@ class GetShopifyOrders implements \JsonSerializable
      */
     protected $processed_at_min;
 
+
     /**
      * @var string|null
      */
