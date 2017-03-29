@@ -49,7 +49,7 @@ class ShopifyCustomCollection implements \JsonSerializable
     protected $published_scope;
 
     /**
-     * @var ShopifyCustomCollectionImage
+     * @var ShopifyCustomCollectionImage|null
      */
     protected $image;
 
@@ -226,7 +226,7 @@ class ShopifyCustomCollection implements \JsonSerializable
     }
 
     /**
-     * @return ShopifyCustomCollectionImage
+     * @return ShopifyCustomCollectionImage|null
      */
     public function getImage()
     {
@@ -234,7 +234,7 @@ class ShopifyCustomCollection implements \JsonSerializable
     }
 
     /**
-     * @param ShopifyCustomCollectionImage $image
+     * @param ShopifyCustomCollectionImage|null $image
      */
     public function setImage($image)
     {
