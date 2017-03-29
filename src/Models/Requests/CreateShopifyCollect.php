@@ -35,7 +35,6 @@ class CreateShopifyCollect implements \JsonSerializable
     protected $sort_value;
 
     /**
-     * Collect constructor.
      * @param array $data
      */
     public function __construct($data = [])
