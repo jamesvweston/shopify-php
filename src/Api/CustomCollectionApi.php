@@ -35,6 +35,18 @@ class CustomCollectionApi extends BaseApi
     }
 
     /**
+     * @see     https://help.shopify.com/api/reference/customcollection#count
+     * @param   GetShopifyCustomCollections|array    $request
+     * @return  int
+     */
+    public function count ($request = [])
+    {
+        $request                        = $request instanceof GetShopifyCustomCollections ? $request : new GetShopifyCustomCollections($request);
+        $response                       = parent::makeHttpRequest('get', '/custom_collections/count.json', $request);
+        return $response['count'];
+    }
+
+    /**
      * @see     https://help.shopify.com/api/reference/customcollection#create
      * @param   CreateShopifyCustomCollection|array       $request
      * @return  ShopifyCustomCollection|string

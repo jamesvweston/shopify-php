@@ -35,6 +35,18 @@ class CollectApi extends BaseApi
     }
 
     /**
+     * @see     https://help.shopify.com/api/reference/collect#count
+     * @param   GetShopifyCollects|array    $request
+     * @return  int
+     */
+    public function count ($request = [])
+    {
+        $request                        = $request instanceof GetShopifyCollects ? $request : new GetShopifyCollects($request);
+        $response                       = parent::makeHttpRequest('get', '/collects/count.json', $request);
+        return $response['count'];
+    }
+
+    /**
      * @see     https://help.shopify.com/api/reference/collect#create
      * @param   CreateShopifyCollect|array       $request
      * @return  ShopifyCollect|string
