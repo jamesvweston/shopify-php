@@ -5,7 +5,7 @@ namespace jamesvweston\Shopify\Models\Requests;
 
 use jamesvweston\Utilities\ArrayUtil AS AU;
 
-class GetShopifyCustomCollections
+class GetShopifyCustomCollections implements \JsonSerializable
 {
 
     /**
