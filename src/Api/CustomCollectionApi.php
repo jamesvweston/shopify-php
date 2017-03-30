@@ -6,6 +6,7 @@ namespace jamesvweston\Shopify\Api;
 use jamesvweston\Shopify\Models\Requests\CreateShopifyCustomCollection;
 use jamesvweston\Shopify\Models\Requests\GetShopifyCustomCollections;
 use jamesvweston\Shopify\Models\Responses\ShopifyCustomCollection;
+use jamesvweston\Shopify\Models\Responses\ShopifyMetaField;
 use jamesvweston\Utilities\ArrayUtil AS AU;
 
 class CustomCollectionApi extends BaseApi
@@ -88,6 +89,27 @@ class CustomCollectionApi extends BaseApi
     {
         $response                       = parent::makeHttpRequest('delete', '/custom_collections/' . $id . '.json');
         return true;
+    }
+
+    /**
+     * @param   int         $id
+     * @return  ShopifyMetaField[]|string
+     */
+    public function getMetaFields ($id)
+    {
+        $response                       = parent::makeHttpRequest('get', '/custom_collections/' . $id . '/metafields.json');
+        $items                          = AU::get($response['metafields'], []);
+
+        if ($this->config->isJsonOnly())
+            return json_encode($items);
+
+        $result                         = [];
+        foreach ($items AS $metafield)
+        {
+            $result[]                   = new ShopifyMetaField($metafield);
+        }
+
+        return $result;
     }
 
 }

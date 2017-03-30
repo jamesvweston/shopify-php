@@ -6,6 +6,7 @@ namespace jamesvweston\Shopify\Api;
 use jamesvweston\Shopify\Models\Requests\CreateShopifyProduct;
 use jamesvweston\Shopify\Models\Requests\GetShopifyProductCount;
 use jamesvweston\Shopify\Models\Requests\GetShopifyProducts;
+use jamesvweston\Shopify\Models\Responses\ShopifyMetaField;
 use jamesvweston\Shopify\Models\Responses\ShopifyProduct;
 use jamesvweston\Shopify\Models\Responses\ShopifyVariant;
 use jamesvweston\Utilities\ArrayUtil AS AU;
@@ -126,6 +127,27 @@ class ProductApi extends BaseApi
         foreach ($items AS $variant)
         {
             $result[]                   = new ShopifyVariant($variant);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param   int         $id
+     * @return  ShopifyMetaField[]|string
+     */
+    public function getMetaFields ($id)
+    {
+        $response                       = parent::makeHttpRequest('get', '/products/' . $id . '/metafields.json');
+        $items                          = AU::get($response['metafields'], []);
+
+        if ($this->config->isJsonOnly())
+            return json_encode($items);
+
+        $result                         = [];
+        foreach ($items AS $metafield)
+        {
+            $result[]                   = new ShopifyMetaField($metafield);
         }
 
         return $result;
